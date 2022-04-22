@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View your searched result</title>
+</head>
+<body style="background-color:lightgray;">
+<div align="center">
+<h3>Customer complaint</h3>
+<table border=7>
+    <thead>
+    <td>User Id</td>
+    <td>User Name</td>
+    <td>Oder Id</td>
+    <td>Complain Id</td>
+    <td>Description</td>
+    <td>Feedback</td>
+
+
+
+    </thead>
+
+{% for x in rows %}
+    <tr>
+        <td>{{x[0]}}</td>
+        <td>{{x[1]}}  {{x[2]}}</td>
+        <td>{{x[6]}}</td>
+        <td>{{x[4]}}</td>
+        <td>{{x[5]}}</td>
+        <td>{{x[7]}}</td>
+
+
+
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+</body>
+</html>

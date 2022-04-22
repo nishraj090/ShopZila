@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Remove</title>
+<style>
+	table {
+	border-width: 10px;
+}
+
+#itemImage {
+	height: 100px;
+	width: 80px;
+}
+
+</style>
+</head>
+<body>
+<table>
+	{% for i in range(6) %}
+	<tr>
+		{% for row in data %}
+		<td>
+			<a href="/removeItem?productId={{row[0]}}">
+			{% if i == 4 %}
+				<img src={{ url_for('static', filename='uploads/' + row[i]) }} id="itemImage" />
+			{% else %}
+				{{row[i]}}
+			{% endif %}
+			</a>
+		</td>
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>

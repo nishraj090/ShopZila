@@ -1,0 +1,280 @@
+<html>
+  <head>
+    <title>ShopZilla Home Page</title>
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=JetBrains+Mono:wght@800&display=swap");
+      body {
+        margin: 0;
+        padding: 0;
+        background: url(/static/images/background.jpeg);
+        background-size: cover;
+        background-position: center;
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 18px;
+        background-repeat: none;
+      }
+
+      #itemImage {
+        height: 200px;
+        width: 150px;
+      }
+
+      #productPrice {
+        text-align: center;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+        background: #C8C8C8;
+      }
+
+      button {
+        background-color: #00b712;
+        background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      .display {
+        display: flex;
+        width: 100%;
+        background: #8a2be2;
+        justify-content: center;
+      }
+
+      ul,
+      #navhead,
+      a {
+        text-decoration: none;
+        color: white;
+        list-style: none;
+      }
+
+      #navhead,
+      ul,
+      a {
+        display: inline-flex;
+        margin: 5px;
+        padding: 5px;
+      }
+
+      a:hover {
+        color: greenyellow;
+      }
+      h2 {
+        font-family: Jetbrains Mono, monospace;
+      }
+
+      #productTable {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+      }
+
+      td {
+        padding: 20px;
+        margin: 20px;
+      }
+
+
+      .dropbtn {
+        background-color: black;
+        color: white;
+        padding: 16px;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        float: left;
+      }
+
+      .info {
+        text-align: center;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .dropdown-content a {
+        font-size: 14px;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #696969;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: #696969;
+      }
+
+      .admin,
+      .seller {
+        width: 655px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .footer-title, .info{
+    color: rgba(255, 255, 255, 0.75);
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.footer-title{
+    margin-top: 80px;
+    color: #686868;
+}
+
+
+
+
+.footer-credit{
+    width: 100%;
+    padding: 10px;
+    position: bottom;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+}
+ h2  {
+    color: black;
+  }
+    </style>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/topStyle.css') }}"
+    />
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename = 'js/validateForm.js') }}"
+    ></script>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <a>
+        <img
+          src="/static/images/logo.jpeg"
+          alt="logo"
+          width="130"
+          height="50"
+        />
+      </a>
+
+
+
+      {% if not loggedIn %}
+      <div id="signInButton">
+        <a class="link" href="/loginForm">Sign In</a>
+      </div>
+      {% else %}
+      <div class="dropdown">
+        <button class="dropbtn">Hello, <br />{{firstName}}</button>
+        <div class="dropdown-content">
+
+          <a href="/account/profile">Your profile</a>
+          <hr />
+          <a href="/logout">Sign Out</a>
+        </div>
+      </div>
+      {% endif %}
+
+      <div id="kart">
+        <a class="link" href="/cart">
+          <img src='/static/images/kfkfkf.png'> CART {{noOfItems}}
+        </a>
+      </div>
+    </div>
+
+    <div class="display">
+      <div class="displayCategory">
+        <h2 id="navhead">Shop by Category:</h2>
+        <ul>
+          {% for row in categoryData %}
+          <li>
+            <a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="info">
+      <h2>Featured Items</h2>
+      {% for data in itemData %}
+      <table id="productTable">
+        <tr id="productName">
+          {% for row in data %}
+          <td style="text-align: center">{{row[1]}}</td>
+          {% endfor %}
+        </tr>
+
+        <tr id="productImage">
+          {% for row in data %}
+          <td>
+            <a href="/productDescription?productId={{row[0]}}">
+            <img src={{ url_for('static', filename='uploads/' + row[4]) }}
+            id="itemImage" />
+          </td>
+          {% endfor %}
+        </tr>
+
+        <tr id="productPrice">
+          {% for row in data %}
+          <td>RS.{{row[2]}}</td>
+          {% endfor %}
+        </tr>
+      </table>
+      {% endfor %}
+    </div>
+
+    <div>
+      <div class="admin">
+        <p>Hi admin u can login here</p>
+        <form action="/Alogin">
+          <button id="admin" type="click">Click me</button>
+        </form>
+      </div>
+
+      <div class="seller">
+        <p>Hi seller u can list your products here</p>
+        <form action="/seller1">
+          <button id="seller12" type="click">Click me</button>
+        </form>
+      </div>
+    </div>
+  <footer>
+
+        <p class="footer-title">about company</p>
+        <p class="info">Shopzilla,Providing quality products to everyone  </p>
+
+
+
+        <p class="footer-credit">ShopZilla, Best apparels online store</p>
+    </footer>
+  </body>
+</html>

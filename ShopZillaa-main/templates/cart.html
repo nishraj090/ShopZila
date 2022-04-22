@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Your Cart</title>
+	<style>
+	@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=JetBrains+Mono:wght@800&display=swap");
+	body {
+        margin: 0;
+        padding: 0;
+        background: url(/static/images/background.jpeg);
+        background-size: cover;
+        background-position: center;
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 18px;
+        background-repeat: none;
+      }
+		#tableItems {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.navbar {
+        display: flex;
+        justify-content: space-around;
+        background: #B0B0B0;
+      }
+
+#itemImage {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	float: left;
+}
+
+#itemName {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	width: 200px;
+	float: left;
+}
+
+#titleName {
+	width: 200px;
+	float: left;
+}
+
+#titlePrice {
+	float: left;
+}
+
+#itemPrice {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 100px;
+	display: inline-block;
+}
+
+#image {
+	height: 100px;
+	width: 80px;
+}
+
+#seperator {
+	margin: 0px;
+	max-width: 400px;
+}
+
+#seperator1 {
+	margin: 0px;
+	max-width: 400px;
+}
+#total {
+	padding-left: 280px;
+}
+
+#itemNameTag {
+	font-weight: bold;
+}
+
+#subtotal {
+	font-weight: bold;
+	font-size: 20px;
+}
+	</style>
+<link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
+<link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
+</head>
+<body>
+<div id="title">
+	<a href="/">
+	<img id="logo" src= {{ url_for('static', filename='images/logo.jpeg') }} />
+	</a>
+
+
+	{% if not loggedIn %}
+		<div id="signInButton">
+			<a class="link" href="/loginForm">Sign In</a>
+		</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+		<img src='/static/images/kfkfkf.png' id="cartIcon" >
+		CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+<div id="cartItems">
+	<h2>Shopping Cart</h2>
+	<div id="tableItems">
+		{% for row in products %}
+		<div>
+			<hr id="seperator">
+			<div id="itemImage">
+				<img src={{url_for('static', filename='uploads/'+row[3])}} id="image"/>
+			</div>
+			<div id="itemName">
+				<span id="itemNameTag">{{row[1]}}</span><br>
+				In stock<br>
+				<a href="/removeFromCart?productId={{row[0]}}">Remove</a>
+			</div>
+			<div id="itemPrice">
+				RS.{{row[2]}}
+			</div>
+		</div>
+		{% endfor %}
+		<hr id="seperator1">
+		<div id="total">
+			<span id="subtotal">Subtotal</span> : RS.{{totalPrice}}
+		</div>
+	</div>
+</div>
+<a href="/checkout">Proceed to checkout</a>
+</body>
+</html>

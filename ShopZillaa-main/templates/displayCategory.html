@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Category: {{categoryName}}</title>
+
+	<style type="text/css">
+
+      body {
+        margin: 0;
+        padding: 0;
+
+        background-size: cover;
+        background-position: center;
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 18px;
+        background-repeat: none;
+      }
+
+      #itemImage {
+        height: 200px;
+        width: 150px;
+      }
+
+      #productPrice {
+        text-align: center;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+        background: #696969;
+      }
+
+      button {
+        background-color: #00b712;
+        background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      .display {
+        display: flex;
+        width: 100%;
+        background: #8a2be2;
+        justify-content: center;
+      }
+
+      ul,
+      #navhead,
+      a {
+        text-decoration: none;
+        color: white;
+        list-style: none;
+      }
+
+      #navhead,
+      ul,
+      a {
+        display: inline-flex;
+        margin: 5px;
+        padding: 5px;
+      }
+
+      a:hover {
+        color: greenyellow;
+      }
+      h2 {
+        font-family: Jetbrains Mono, monospace;
+      }
+
+
+      td {
+        padding: 20px;
+        margin: 20px;
+      }
+
+
+      .dropbtn {
+        background-color: black;
+        color: grey;
+        padding: 16px;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        float: right;
+      }
+
+      .info {
+        text-align: center;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+
+
+
+      .dropdown-content a:hover {
+        background-color: #696969;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: #696969;
+      }
+
+
+      .admin,
+      .seller {
+        width: 655px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .footer-title, .info{
+    color: rgba(255, 255, 255, 0.75);
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.footer-title{
+    margin-top: 80px;
+    color: #686868;
+}
+
+
+
+
+.footer-credit{
+    width: 100%;
+    padding: 10px;
+    position: bottom;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+}
+ h2  {
+    color: black;
+     text-transform: capitalize;
+  }
+	</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }} "/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/topStyle.css') }}" />
+</head>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= "/static/images/logo.jpeg" />
+	</a>
+
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src="/static/images/kfkfkf.png" id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+
+<div>
+	<h2>Showing all products of Category {{categoryName}}:</h2>
+	{% for itemData in data %}
+	<table>
+		<tr id="productName">
+			{% for row in itemData %}
+			<td>
+				{{row[1]}}
+			</td>
+			{% endfor %}
+		</tr>
+		<tr id="productImage">
+			{% for row in itemData %}
+			<td>
+				<a href="/productDescription?productId={{row[0]}}">
+					<img src="{{ url_for('static', filename='uploads/' + row[3]) }}" id="itemImage" />
+				</a>
+			</td>
+			{% endfor %}
+		</tr>
+		<tr id="productPrice">
+			{% for row in itemData %}
+			<td>
+				RS.{{row[2]}}
+			</td>
+			{% endfor %}
+		</tr>
+	</table>
+	{% endfor %}
+</div>
+</body>
+</html>

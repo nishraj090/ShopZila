@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Start Selling</title>
+    <style type="text/css">
+
+
+		body{
+	margin: 0;
+	padding:0;
+    background-image:url("/static/images/background.jpeg");
+    background-size:cover;
+	background-position: center;
+	font-family:sans-serif;
+}
+.sellerbox{
+	width: 320px;
+	height: 420px;
+
+	color: grey;
+	top:50%;
+	left:25%;
+	position:absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 70x 30x;
+}
+
+
+
+h1{
+	margin: 0;
+	padding: 20px 20px 20px;
+	text-align: center;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.sellerbox p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: grey;
+
+}
+
+
+
+.sellerbox input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height:60px;
+	background-color:grey;
+	color:#fff;
+	font-size: 30px;
+
+}
+
+.sellerbox input[type="submit"]:hover
+{
+	cursor: pointer;
+	background-color: green;
+	color: #fff;
+
+}
+
+
+
+.sellerrbox :hover
+{
+	color: #ffc106;
+	background:#fb2525;
+
+}
+
+
+	</style>
+
+</head>
+<body>
+<img src="/static/images/logo.jpeg" alt="logo" width="300" height="100">
+<h1>START SELLING</h1>
+
+<div class="sellerbox">
+<form action="/sellerop1" method="POST" enctype="multipart/form-data">
+
+    <p>SELLER_NAME: <input type="text" name="sname"></p><br>
+    <p>PRODUCT_NAME: <input type="text" name="name"></p><br>
+    <p>PRICE:         <input type="number"  min="0.00" max="100000.00" step="0.01" name="price"></p><br>
+    <p>DESCRIPTION:   <input type="text" name="description"></p><br>
+    Image: <input type="file" name="image"><br>
+    Stock: <input type="text" name="stock"><br>
+    Category: <select name="category">
+		{% for row in categories %}
+			<option value="{{row[0]}}">{{row[1]}}</option>
+		{% endfor %}
+	</select><br>
+
+    <p><input type="submit" value="Sell"></p>
+
+
+
+</form>
+    </div>
+
+
+</body>
+</html>

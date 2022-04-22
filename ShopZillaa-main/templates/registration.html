@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Registration</title>
+    <style type="text/css">
+
+		body{
+	margin: 0;
+	padding:0;
+	background: url(/static/images/background.jpeg);
+	background-size: cover;
+	background-position: center;
+	font-family:sans-serif;
+}
+.registerbox{
+	width: 320px;
+	height: 420px;
+
+	color: #fff;
+	top: 50%;
+	left: 45%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 70x 30x;
+}
+
+
+
+h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.registerbox p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: grey;
+
+}
+
+.registerbox input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.registerbox input[type="text"], input[type="password"],input[type="email"]
+{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.registerbox input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height:40px;
+	background:#fb2525;
+	color:#fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.registerbox input[type="submit"]:hover
+{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+.registerbox a{
+	text-decoraton: none;
+	font-size;c12px;
+	line-height: 20px;
+	color: darkgrey;
+}
+
+.registerbox a:hover
+{
+	color: #ffc106;
+	background:#fb2525;
+
+}
+
+
+	</style>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}">
+</script>
+
+</head>
+<body>
+<img src="/static/images/logo.jpeg" alt="logo" width="300" height="100">
+<div class="registerbox">
+<form action="/register" method="POST" onsubmit="return validate()">
+
+    <p>Email: <input type="email" name="email"></p>
+
+    <P>Password: <input type="password" name="password" id="password" required></p>
+
+    <p>Confirm Password: <input type="password" name="cpassword" id="cpassword"></p>
+
+    <p>First Name: <input type="text" name="firstName"></p>
+    <p>Last Name: <input type="text" name="lastName"></p>
+    <p>Address Line 1: <input type="text" name="address1"></p>
+    <p>Address Line 2: <input type="text" name="address2"></p>
+    <p>Zipcode: <input type="text" name="zipcode"></p>
+    <p>City: <input type="text" name="city"></p>
+    <p>State: <input type="text" name="state"></p>
+    <p>Country: <input type="text" name="country"></p>
+    <p>Phone Number: <input type="text" name="phone"></p>
+
+    <p><input type="submit" value="Register"></p>
+
+    <a href="/loginForm">Login here</a>
+</image>
+</form>
+    </div>
+
+
+</body>
+</html>

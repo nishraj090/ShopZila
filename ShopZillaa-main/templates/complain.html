@@ -1,0 +1,148 @@
+<html>
+<head>
+
+<style>
+body {
+        margin: 0;
+        padding: 0;
+        background: url(/static/images/background.jpeg);
+        background-size: cover;
+        background-position: center;
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 18px;
+        background-repeat: none;
+      }
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgb(70, 68, 68);
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgb(70, 68, 68);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: rgb(37, 116, 161);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/profileHome.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+</head>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= "/static/images/logo.jpeg" />
+	</a>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src='/static/images/kfkfkf.png' id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+<h2>Compliant Box</h2>
+<div class="container">
+  <form action="/account/profile/complain1/comsuccess" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-25">
+        <label for="orderid">Order ID</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="orderid" name="orderid1">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="description">DESCRIPTION</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="description" name="DESCRIPTION">
+
+      </div>
+    </div>
+    <div class ="row">
+        <div class="col-25">
+          <label for="feedback">FEEDBACK</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="FEEDBACK" name="FEEDBACK" placeholder="feedback on product..">
+        </div>
+      </div>
+
+
+
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

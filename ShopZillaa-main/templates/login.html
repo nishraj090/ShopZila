@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>	ShopZilla login</title>
+    <style type="text/css">
+
+		body{
+	margin: 0;
+	padding:0;
+	background: url(/static/images/background.jpeg);
+	background-size: cover;
+	background-position: center;
+	font-family:sans-serif;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.loginbox{
+	width: 320px;
+	height: 420px;
+
+	color: #fff;
+	top: 50%;
+	left: 45%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 70x 30x;
+}
+
+
+
+h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.loginbox p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: grey;
+
+}
+
+.loginbox input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.loginbox input[type="text"], input[type="password"],input[type="email"]
+{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.loginbox input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height:40px;
+	background:#fb2525;
+	color:#fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.loginbox input[type="submit"]:hover
+{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+.loginbox a{
+	text-decoraton: none;
+	font-size;c12px;
+	line-height: 20px;
+	color: darkgrey;
+}
+
+.loginbox a:hover
+{
+	color: #ffc106;
+	background:#fb2525;
+
+}
+	</style>
+</head>
+<body>
+<img src="/static/images/logo.jpeg" alt="logo" width="300" height="100">
+<div class="loginbox">
+
+<form action="/login" method="POST">
+	<p>Email: <input type="text" name="email"></p>
+	<p>Password: <input type="password" name="password"></p>
+	<p><input type="submit"></p>
+	<a href="/registerationForm">Register here</a>
+</form>
+</div>
+</body>
+</html>

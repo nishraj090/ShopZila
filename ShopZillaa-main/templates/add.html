@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Admin</title>
+</head>
+<style>
+body {
+        margin: 0;
+        padding: 0;
+        background: url(/static/images/background.jpeg);
+        background-size: cover;
+        background-position: center;
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 18px;
+        background-repeat: none;
+      }
+    .footer-title, .info{
+    color: rgba(255, 255, 255, 0.75);
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.footer-title{
+    margin-top: 80px;
+    color: #fff;
+}
+
+.footer-social-container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.footer-credit{
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+}
+</style>
+<body>
+<h2>Add items</h2>
+<form action="/addItem" method="POST" enctype="multipart/form-data">
+	Name: <input type="text" name="name"><br>
+	Price: <input type="text" name="price"><br>
+	Description: <textarea name="description" rows=3 cols="40"></textarea><br>
+	Image: <input type="file" name="image"><br>
+	Stock: <input type="text" name="stock"><br>
+	Category: <select name="category">
+		{% for row in categories %}
+			<option value="{{row[0]}}">{{row[1]}}</option>
+		{% endfor %}
+	</select><br>
+	<input type="submit">
+
+
+
+
+    <footer>
+
+        <p class="footer-title">about company</p>
+        <p class="info">Shopzilla,Providing quality products to everyone </p>
+
+
+
+        <p class="footer-credit">ShopZilla, Best apparels online store</p>
+    </footer>
+</form>
+</body>
+</html>
